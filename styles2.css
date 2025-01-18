@@ -8,16 +8,10 @@
   body {
     opacity: 0;
     transition: opacity 2s ease-in-out;
+    font-family: 'Arial', sans-serif;
 }
 
-/* Final state of the body after the page has loaded */
-body.loaded {
-    opacity: 1;
-}
-  
-  body {
-    font-family: 'Arial', sans-serif;
-   }
+/* nav bar css */
   .navbar {
     background: url('bg.jpeg');
     height: 20rem;
@@ -46,10 +40,6 @@ body.loaded {
     color: #555;
     font-size: 1.2rem;
   }
-
-
-
-
 
   .hamburger {
     display: none;
@@ -121,18 +111,7 @@ body.loaded {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-  .header-content{
+ .header-content{
    
     text-align: center;
     margin-top: 8rem;
@@ -160,6 +139,9 @@ body.loaded {
   }
 }
 
+
+
+/* blog post section css */
   
     .blog-posts {
     background:#fffafa;
@@ -206,6 +188,9 @@ body.loaded {
   }
   
 
+
+  /* writing pad content css */
+
   .main{
     padding: 2.5rem 0 0.5rem 2.5rem;
     font-size: 1.5rem;
@@ -215,6 +200,8 @@ body.loaded {
     .main:focus{
       outline: none;
     }
+
+  
 
 
   #writingpad{
@@ -250,7 +237,7 @@ body.loaded {
     border: none; 
  }
 
-
+/* footer css */
 
 
   .footer {
@@ -359,6 +346,9 @@ body.loaded {
     }
 }
   
+body.loaded {
+  opacity: 1;
+}
 
   
    

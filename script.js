@@ -1,8 +1,18 @@
-    
+   
+   
+   // js for writing blogs and storing blogs
+   
 const title = document.getElementById('title');
 const content = document.getElementById('writingpad');
 let blog = {}
 const savebtn = document.getElementById('save');
+
+title.addEventListener("click",()=>{
+    title.innerHTML="";
+})
+content.addEventListener("click",()=>{
+    content.innerHTML="";
+})
 savebtn.addEventListener('click', (event) => {
 
     let  blogs = JSON.parse(localStorage.getItem("blogs")) || [];
@@ -60,7 +70,9 @@ function loadFromLocalStorage(){
 
 
 document.addEventListener('DOMContentLoaded', loadFromLocalStorage);
+   
 
+// js for buttons
 
 document.getElementById('boldButton').addEventListener('click', () => formatText('bold'));
 document.getElementById('italicButton').addEventListener('click', () => formatText('italic'));
@@ -70,7 +82,10 @@ function formatText(command) {
   
     document.execCommand(command, false,null);
 }
+    
 
+
+    // js for hamburger
 
         const hamburger = document.getElementById('hamburger');
         const navLinksMobile = document.getElementById('nav-links-mobile');
