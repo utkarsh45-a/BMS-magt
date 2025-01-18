@@ -13,9 +13,6 @@ savebtn.addEventListener('click', (event) => {
     title.innerHTML = '';
     content.innerHTML = '';
     let storedBlogs = JSON.parse(localStorage.getItem('blogs'))
-    console.log(storedBlogs[blogs.length-1].content);
-    console.log(storedBlogs[blogs.length-1].title)
-    console.log(storedBlogs[blogs.length-1].content)
     location.reload();
     
     
@@ -23,7 +20,6 @@ savebtn.addEventListener('click', (event) => {
 const clear = document.getElementById('clear');
 clear.addEventListener('click', () => {
     title.innerHTML = '';
-    console.log("title.innerHTML");
     content.innerHTML = '';
 })
 
