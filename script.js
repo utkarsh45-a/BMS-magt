@@ -22,7 +22,7 @@ savebtn.addEventListener('click', (event) => {
     localStorage.setItem("blogs", JSON.stringify(blogs));
     title.innerHTML = '';
     content.innerHTML = '';
-    let storedBlogs = JSON.parse(localStorage.getItem('blogs'))
+    
     location.reload();
     
     
