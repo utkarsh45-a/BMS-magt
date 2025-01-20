@@ -167,9 +167,18 @@
   }
   
   .post h3 {
+    display: inline;
     color: #555;
     font-size: 1.8rem;
     margin-bottom: 10px;
+  }
+  #delete{
+    margin-left: 3rem;
+   
+    background-color: #555;
+    color: white;
+    padding: 5px;
+    border-radius: 46%;
   }
   .post p{
     

@@ -37,6 +37,7 @@ clear.addEventListener('click', () => {
 
 function loadFromLocalStorage(){
     let storedBlogs = JSON.parse(localStorage.getItem('blogs'))
+    console.log(storedBlogs)
    
     console.log(storedBlogs);
      for (let index of storedBlogs) {
@@ -46,6 +47,7 @@ function loadFromLocalStorage(){
     artical.classList.add('post');
 
     const h3 = document.createElement('h3');
+    h3.classList.add("blog_class")
     h3.setAttribute('id', 'blog_title');
    
 
@@ -53,9 +55,40 @@ function loadFromLocalStorage(){
     const para = document.createElement('p');
     para.classList.add('subtitle');
     para.setAttribute('id', 'blog_content');
+
+    const button=document.createElement("button");
+    button.setAttribute("id","delete");
+    button.innerHTML="delete"
+
+    // 
+    // const deletebtn =document.querySelector(".post");
+
+   
+    artical.addEventListener("click",(event)=>{
+        // console.log(event.target.id==="delete")
+        const deletekey=event.target.previousElementSibling.innerHTML
+        console.log(storedBlogs)
+        console.log(storedBlogs.indexOf(event.target))
+
+        const index = storedBlogs.findIndex(storedBlogs=> storedBlogs["title"] === deletekey);
+        console.log(index)
+       
+       if(event.target.id=== "delete"){
+           
+         
+        storedBlogs.splice(index, 1);
+
+        localStorage.setItem("blogs", JSON.stringify(storedBlogs));
+       
+        location.reload();
+
+            
+       }
+     })
     
 
     artical.appendChild(h3)
+    artical.appendChild(button)
     artical.appendChild(para)
 
     post_container.appendChild(artical)
@@ -104,6 +137,9 @@ function formatText(command) {
         document.addEventListener('DOMContentLoaded', (event) => {
             document.body.classList.add('loaded');
         });
+
+
+
 
 
 
