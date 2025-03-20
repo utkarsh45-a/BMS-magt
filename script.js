@@ -7,22 +7,17 @@ const content = document.getElementById('writingpad');
 let blog = {}
 const savebtn = document.getElementById('save');
 
-title.addEventListener("click",()=>{
-    title.innerHTML="";
-})
-content.addEventListener("click",()=>{
-    content.innerHTML="";
-})
+
+
 savebtn.addEventListener('click', (event) => {
 
     let  blogs = JSON.parse(localStorage.getItem("blogs")) || [];
-    blog["title"] = title.innerHTML.replace(/&nbsp;/g, ' ').trim(),
-    blog["content"] = content.innerHTML.replace(/&nbsp;/g, ' ').trim()  
+    blog["title"] = title.value.replace(/&nbsp;/g, ' ').trim(),
+    blog["content"] = content.value.replace(/&nbsp;/g, ' ').trim()  
     blogs.push(blog)
     localStorage.setItem("blogs", JSON.stringify(blogs));
     title.innerHTML = '';
     content.innerHTML = '';
-    
     location.reload();
     
     
