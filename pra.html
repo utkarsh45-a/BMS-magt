@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clean Blog</title>
+    
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+    
+/* Ensure all elements have box-sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+/* Make the body fade in smoothly */
+body {
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Navbar responsiveness */
+.navbar {
+    height: auto;
+    min-height: 20rem;
+    padding: 10px 20px;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Navbar content */
+.container1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+/* Navbar menu links */
+.navmenu a {
+    margin: 0.5rem;
+    font-size: 1rem; /* Reduce size for smaller screens */
+}
+
+/* Hamburger menu */
+.hamburger {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    z-index: 2;
+}
+
+.hamburger span {
+    width: 30px;
+    height: 3px;
+    background: white;
+}
+
+/* Mobile Navigation */
+.nav-links-mobile {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 250px;
+    height: 100vh;
+    background: #333;
+    z-index: 10;
+    transition: right 0.3s ease;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.nav-links-mobile.active {
+    right: 0;  
+}
+
+.nav-links-mobile a {
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+/* Header Content */
+.header-content {
+    text-align: center;
+    margin: 5rem 0;
+    font-size: 1.5rem;
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+}
+
+/* Blog post responsiveness */
+.blog-posts {
+    padding: 20px 10px;
+}
+
+.container {
+    max-width: 1100px;
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.post h3 {
+    font-size: 1.5rem;
+}
+
+.post p {
+    font-size: 1rem;
+}
+
+/* Writing pad section */
+.writecontent {
+    padding: 2rem;
+}
+
+.main, #writingpad {
+    width: 100%;
+    max-width: 100%;
+    font-size: 1.2rem;
+}
+
+/* Button controls */
+.controls {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+}
+
+.controls button {
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+}
+
+/* Footer section */
+.footer {
+    padding: 30px 20px;
+    background: #292929;
+    color: #fff;
+    text-align: center;
+}
+
+.footer-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.footer-col {
+    flex: 1;
+    min-width: 200px;
+}
+
+/* Media Queries for better responsiveness */
+@media (max-width: 992px) {
+    .navmenu {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .header-content h1 {
+        font-size: 2rem;
+    }
+
+    .header-content p {
+        font-size: 1rem;
+    }
+
+    .post h3 {
+        font-size: 1.3rem;
+    }
+
+    .footer-row {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .container1 {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .main, #writingpad {
+        font-size: 1rem;
+    }
+
+    .controls button {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .footer-row {
+        gap: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .header-content h1 {
+        font-size: 1.5rem;
+    }
+
+    .header-content p {
+        font-size: 0.9rem;
+    }
+
+    .post h3 {
+        font-size: 1.2rem;
+    }
+
+    .controls button {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    .footer-col h4 {
+        font-size: 1.1rem;
+    }
+}
+
+</style>
+</head>
+
+<body>
+    <!-- Header Section -->
+
+    <section id="home">
+        <nav class="navbar">
+            <div class="container1">
+                <div class="brand">BLOG</div>
+                <div class="navmenu">
+
+                    <a href="#home">Home</a>
+                    <a href="#yourblogs">Your Blogs</a>
+                    <a href="#samplepost">Post Blog</a>
+
+
+                </div>
+
+
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-links-mobile" id="nav-links-mobile">
+                    <li><a href="#home" class="nav_menu">Home</a></li>
+                    <li><a href="#yourblogs" class="nav_menu">Your Blogs</a></li>
+                    <li><a href="#samplepost" class="nav_menu">Post Blog</a></li>
+
+                </ul>
+
+
+            </div>
+            <div class="header-content">
+                <h1>Clean Blog</h1>
+                <p>A Blog Theme by blog</p>
+            </div>
+        </nav>
+    </section>
+
+
+    <!-- post blog section -->
+    <section id="yourblogs">
+        <main class="blog-posts">
+            <div class="container">
+                <article class="post">
+                    <h3>
+                        Way To Heaven
+                    </h3>
+                    <p class="subtitle">The concept of the "way to heaven" is viewed differently across various
+                        religious and spiritual traditions. In Christianity, it is believed that salvation and eternal
+                        life with God can only be attained through faith in Jesus Christ, repentance, and following His
+                        teachings. Islam emphasizes belief in Allah and following the teachings of the Prophet Muhammad,
+                        with the Five Pillars of Islam guiding Muslims toward paradise.</p>
+                </article>
+
+
+            </div>
+        </main>
+    </section>
+    <div class="devide"></div>
+    <section id="samplepost">
+
+        <!-- blog writing section -->
+
+        <div class="writecontent">
+            <div class="pad">
+                <input class="main" id="title" contenteditable="true" placeholder="Enter title">
+
+
+
+                <input id="writingpad" contenteditable="true" placeholder="write your blog here.....">
+            </div>
+            <div class="controls">
+                <button id="clear">Clear</button>
+                <button id="save">Save</button>
+                <button id="boldButton"><b>Bold</b></button>
+                <button id="italicButton"><i>Italic</i></button>
+                <button id="underlineButton"><u>Underline</u></button>
+            </div>
+            <div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- footer -->
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-row">
+                <div class="footer-col">
+                    <h4>Service</h4>
+                    <ul>
+                        <li><a href="#yourblogs">Blogs Writing</a></li>
+                        <li><a href="#samplepost"> Blogs Reading</a></li>
+
+
+
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+
+
+
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+
+
+                        <li><a href="#yourblogs">Blog</a></li>
+
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Blog. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+<script src="./script.js"></script>
+<script>
+
+</script>
+
+</html>
